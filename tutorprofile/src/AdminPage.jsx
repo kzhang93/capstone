@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Button, Container, Typography, Card, CardContent, List, ListItem, ListItemText, ListItemAvatar, Avatar, Switch, TextField, Dialog, DialogActions, DialogContent, DialogTitle
+  Button, Container, Typography, Card, CardContent, List, ListItem, ListItemText, ListItemAvatar, Avatar, Switch, Dialog, DialogActions, DialogContent, DialogTitle, TextField
 } from '@mui/material';
 
 const AdminDashboard = () => {
@@ -18,7 +18,6 @@ const AdminDashboard = () => {
   const [displayMode, setDisplayMode] = useState('');
   const [dialogOpen, setDialogOpen] = useState(false);
   const [newData, setNewData] = useState({});
-  const [searchTerm, setSearchTerm] = useState('');
   const [editItem, setEditItem] = useState(null);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
 
@@ -111,17 +110,11 @@ const AdminDashboard = () => {
     setDisplayMode('UnitsofStudy');
   };
 
+
   return (
     <Container style={{ backgroundColor: 'pink', minHeight: '100vh', padding: '20px' }}>
       <Typography variant="h4" gutterBottom>Administrative Dashboard</Typography>
 
-      <TextField
-        label="Search"
-        variant="outlined"
-        value={searchTerm}
-        onChange={e => setSearchTerm(e.target.value)}
-        style={{ marginBottom: '20px' }}
-      />
 
       {/* User Management Section */}
       <Card variant="outlined" style={{ marginBottom: '20px', backgroundColor: '#e3f2fd' }}>
