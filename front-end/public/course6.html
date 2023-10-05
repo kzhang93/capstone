@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MAT 107 Introduction to Mathematics</title>
+  <style>
+    body {
+      background-color: pink;  /* Background set to pink */
+    }
+    .container {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+    .text-container {
+      width: 60%;
+    }
+    .image-container {
+      width: 30%;
+      margin-left: -20px;  /* Shift the image slightly to the left */
+    }
+    .image-container img {
+      max-width: 120%;  /* Image maximum width as the container width */
+      height: auto;  /* Height is automatic to maintain aspect ratio */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="image-container">
+      <img src="./src/assets/MAT.jpg" alt="MAT 107 Introduction to Mathematics">
+    </div>
+    <div class="text-container">
+      <h1>MAT 107 Introduction to Mathematics</h1>
+      <p id="price">A$80.00</p>
+      <p>The goal of this course is to learn how to work with Linear Functions, Quadratic Functions, General Polynomial Functions, Rational Functions, Exponential Functions, Logarithmic Functions, and Systems of Linear Equations. We will focus on problem-solving skills by talking about ideas in each of these areas.</p>
+      
+      <!-- Note: Added course name and price as parameters -->
+      <button style="background-color: blue; color: white;" onclick="addToCart('MAT 107 Introduction to Mathematics', 80)">Add to Cart</button>
+    </div>
+  </div>
+
+  <script>
+    function addToCart(courseName, price) {
+      let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+      cart.push({ courseName, price });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert('Added item to cart.');
+    }
+  </script>
+</body>
+</html>

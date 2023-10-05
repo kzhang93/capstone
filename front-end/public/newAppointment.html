@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Appointment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Appointment Scheduling</h2>
+
+<!-- Calendar Interface -->
+<div id="calendar"></div>
+
+<!-- Course Selection -->
+<label for="courseSelect">Select a course:</label>
+<select id="courseSelect">
+    <!-- Courses will be populated via JavaScript -->
+</select>
+
+<!-- Date Selection -->
+<label for="datePicker">Select a date:</label>
+<input type="date" id="datePicker">
+
+<!-- Time Selection -->
+<label for="timeSelect">Select a time slot:</label>
+<select id="timeSelect">
+    <!-- Time slots will be populated via JavaScript -->
+</select>
+
+<!-- Book button -->
+<button id="bookBtn">Request Appointment</button>
+
+<!-- Notification Area -->
+<div id="notification"></div>
+
+<script src="scripts.js"></script>
+</body>
+</html>

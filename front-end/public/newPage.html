@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>COM 525 Introduction to Human Computer Interaction</title>
+  <style>
+    body {
+      background-color: pink;
+    }
+    .container {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+    .text-container {
+      width: 60%;
+    }
+    .image-container {
+      width: 30%;
+      margin-left: -20px;
+    }
+    .image-container img {
+      max-width: 120%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="image-container">
+      <img src="./src/assets/HCL.png" alt="HCL Logo">
+    </div>
+    <div class="text-container">
+      <h1 id="courseTitle">COM 525 Introduction to Human Computer Interaction</h1>
+      <p id="price">A$50.00</p>
+      <p id="courseDescription">This course introduces HCI user-centered practice. The course will cover both theoretical and practical applications of Human-Computer Interaction concepts. This course covers five interrelated themes: issue analysis, idea generation, prototype, implementation, and evaluation. This course will teach you effective strategies for understanding people and recognizing design opportunities. You will learn about the features of effective interfaces and tools for prototype and implementation. You will assess and improve your designs throughout the process. Effective communication of your vision or product specifications to stakeholders will be covered in this course.</p>
+      
+      <button style="background-color: blue; color: white;" onclick="addToCart('COM 525 Introduction to Human Computer Interaction', 50)">Add to Cart</button>
+    </div>
+  </div>
+
+  <script>
+    function addToCart(courseName, price) {
+      let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+      cart.push({ courseName, price });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert('Added item to cart.');
+    }
+  </script>
+</body>
+</html>

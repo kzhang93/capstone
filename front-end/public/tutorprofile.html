@@ -1,0 +1,65 @@
+import React, { useCallback, useState } from 'react';
+import { Container, Typography, Box, Avatar, Button } from '@mui/material';
+import { useDropzone } from 'react-dropzone';
+
+const TutorDashboard = () => {
+  const [avatar, setAvatar] = useState(null);
+  
+  // Assuming tutorDetails might change in future or fetched from API, we'll also make it a state
+  const [tutorDetails, setTutorDetails] = useState({
+    name: "John Doe",
+    faculty: "Computer Science",
+    bio: "Experienced tutor with 5 years in teaching advanced algorithms and data structures.",
+    expertise: ["Algorithms", "Data Structures", "Web Development", "Databases"],
+    timeZone: "GMT+1",
+    availability: [
+      { startTime: "09:00", endTime: "11:00" },
+      { startTime: "14:00", endTime: "16:00" }
+    ],
+    reviews: [
+      { unit: "Algorithms", rating: 5, feedback: "Great tutor!" },
+      { unit: "Web Development", rating: 4, feedback: "Very knowledgeable." }
+    ]
+  });
+
+  const onDrop = useCallback((acceptedFiles) => {
+    const file = acceptedFiles[0];
+    const reader = new FileReader();
+    
+    reader.onload = (e) => {
+      setAvatar(e.target.result);
+      console.log("Uploaded image data:", e.target.result); 
+      // If needed, you can upload this image to server here
+    };
+    
+    reader.onerror = (error) => {
+      console.error("File reading has failed:", error);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }, []);
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    maxFiles: 1,
+    accept: 'image/*'
+  });
+
+  return (
+    <Container>
+      <Typography variant="h4" gutterBottom>Your Dashboard</Typography>
+
+      <Box {...getRootProps()} style={{ cursor: 'pointer', marginBottom: '20px' }}>
+        <input {...getInputProps()} />
+        <Avatar src={avatar} style={{ width: '100px', height: '100px' }} />
+        <Button variant="outlined" style={{ marginTop: '10px' }}>Upload Profile Picture</Button>
+      </Box>
+      
+      {/* Other tutor details rendering can go here... */}
+    </Container>
+  );
+}
+
+export default TutorDashboard;

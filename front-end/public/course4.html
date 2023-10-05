@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PPE 208 Table Tennis II</title>
+  <style>
+    body {
+      background-color: pink;  /* 背景设置为粉色 */
+    }
+    .container {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+    .text-container {
+      width: 60%;
+    }
+    .image-container {
+      width: 30%;
+      margin-left: -20px;  /* 向左稍微移动图片 */
+    }
+    .image-container img {
+      max-width: 120%;  /* 图片最大宽度为容器宽度 */
+      height: auto;  /* 高度自动，以保持纵横比 */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="image-container">
+      <img src="./src/assets/TTennis.png" alt="PPE 208 Table Tennis II">
+    </div>
+    <div class="text-container">
+      <h1>PPE 208 Table Tennis II</h1>
+      <p id="price">A$30.00</p>
+      <p>a. Preparing to Play (grip, ready stance, mastering basic strokes and hand skills)
+        b. Forehand and backhand  strokes/lloops/ chops
+        c. Understand topspin and underspin and footwork 
+        d. Execute serve and return
+        e. Practicing match</p>
+      
+      <!-- 注意：添加了课程名称和价格作为参数 -->
+      <button style="background-color: blue; color: white;" onclick="addToCart('PPE 208 Table Tennis II', 30)">Add to Cart</button>
+    </div>
+  </div>
+
+  <script>
+    function addToCart(courseName, price) {
+      let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+      cart.push({ courseName, price });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert('Added item to cart.');
+    }
+  </script>
+</body>
+</html>

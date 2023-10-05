@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cart Page</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <style>
+    body {
+      background-color: pink;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      padding: 10px;
+    }
+    .remove-button, .checkout-button {
+      background-color: red;
+      color: white;
+      padding: 5px 10px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    #payment-section {
+      display: none;
+    }
+    /* Material UI style for Pay Now button */
+    .mui-btn-success {
+      background-color: green;
+      color: white;
+      padding: 10px 24px;
+      font-size: 0.875rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .mui-btn-success:hover {
+      background-color: darkgreen;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Cart</h1>
+  <div id="cartItems">
+    <!-- Items will be populated here -->
+  </div>
+  <h2>Total: <span id="totalPrice">A$0.00</span></h2>
+  <button class="checkout-button" onclick="openPayment()">Check Out</button>
+  
+  <div id="payment-section">
+    <h2>Payment Information</h2>
+    <!-- Payment fields -->
+    <label>Email:</label>
+    <input type="email"><br>
+    <label>Card Information:</label>
+    <input type="text" placeholder="1234 1234 1234 1234"><br>
+    <label>Expiry Date:</label>
+    <input type="text" placeholder="MM/YY"><br>
+    <label>CCV:</label>
+    <input type="text"><br>
+    <label>Name:</label>
+    <input type="text"><br>
+    <label>Phone Number:</label>
+    <input type="text"><br>
+    <label>Address:</label>
+    <input type="text"><br>
+    <button class="mui-btn-success" onclick="completePayment()">Pay Now</button>
+  </div>
+  
+  <script>
+    // Function to remove an item from the cart
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      populateCart();
+    }
+
+    // Function to populate the cart
+    function populateCart() {
+      let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+      let cartItemsDiv = document.getElementById('cartItems');
+      let totalPrice = 0;
+      cartItemsDiv.innerHTML = ""; // Clear existing items
+      cart.forEach((item, index) => {
+        let itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        itemDiv.innerHTML = `<span>${item.courseName} - A$${item.price}</span>
+                             <button class="remove-button" onclick="removeItem(${index})">Remove</button>`;
+        cartItemsDiv.appendChild(itemDiv);
+        totalPrice += parseFloat(item.price);
+      });
+      document.getElementById('totalPrice').innerText = `A$${totalPrice.toFixed(2)}`;
+    }
+
+    // Function to open the payment section
+    function openPayment() {
+      document.getElementById('payment-section').style.display = 'block';
+    }
+
+    // Function to complete payment
+    function completePayment() {
+      const email = document.querySelector("input[type='email']").value;
+      const cardInfo = document.querySelector("input[placeholder='1234 1234 1234 1234']").value;
+      const expiryDate = document.querySelector("input[placeholder='MM/YY']").value;
+      const ccv = document.querySelectorAll("input[type='text']")[2].value;
+      const name = document.querySelectorAll("input[type='text']")[3].value;
+      const phoneNumber = document.querySelectorAll("input[type='text']")[4].value;
+      const address = document.querySelectorAll("input[type='text']")[5].value;
+
+      if (!email || !cardInfo || !expiryDate || !ccv || !name || !phoneNumber || !address) {
+        alert('Please complete all the information');
+        return;
+      }
+
+      // Add your complete payment logic here
+      alert('Payment completed.');
+    }
+    
+    populateCart();
+  </script>
+</body>
+</html>
